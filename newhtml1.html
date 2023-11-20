@@ -9,7 +9,7 @@
   <h1>User Information</h1>
   <form id="userInfoForm">
     <label for="Name">First Name:</label>
-    <input type="text" id="Name" name="name"><br><br>
+    <input type="text" id="name" name="name"><br><br>
 
 
     <!-- <label for="lastName">Last Name:</label>
@@ -57,8 +57,26 @@
       let btn = document.createElement('input');
       btn.setAttribute('type','button');
       btn.setAttribute('value','delete');
+
+      let edt = document.createElement('input');
+      edt.setAttribute('type','button');
+      edt.setAttribute('value','edit');
+
+      edt.addEventListener('click',(e)=>{
+        e.preventDefault();
+
+        apt.remove();
+        localStorage.removeItem(userData.email);
+
+        document.getElementById('name').setAttribute('value', userData.name) ;
+        document.getElementById('email').setAttribute('value', userData.email) ;
+        document.getElementById('mobile').setAttribute('value', userData.mobile) ;
+        
+    })
+
       apt.innerText = `${userData.name}, ${userData.email}, ${userData.mobile},` ;
       apt.appendChild(btn);
+      apt.appendChild(edt);
      
       appointments.appendChild(apt) ;
 
