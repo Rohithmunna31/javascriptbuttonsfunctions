@@ -49,16 +49,33 @@
       localStorage.setItem(userData.email, JSON.stringify(userData));
 
       // Display a confirmation message
-      alert('User information has been stored in local storage.');
+      //alert('User information has been stored in local storage.');
 
 
       let appointments = document.getElementById('apointment');
       let apt = document.createElement('li') ;
-      apt.innerText = `${userData.name}, ${userData.email}, ${userData.mobile}` ;
+      let btn = document.createElement('input');
+      btn.setAttribute('type','button');
+      btn.setAttribute('value','delete');
+      apt.innerText = `${userData.name}, ${userData.email}, ${userData.mobile},` ;
+      apt.appendChild(btn);
+     
       appointments.appendChild(apt) ;
 
+      btn.addEventListener('click',(e)=>{
+        e.preventDefault();
+        
+        localStorage.removeItem(userData.email);
+
+        apt.remove();
+      });
+
+      
       // You can redirect the user or perform other actions as needed
     }
+
+    
+
 
     // Attach the form submission handler
     form.addEventListener('submit', handleFormSubmit);
